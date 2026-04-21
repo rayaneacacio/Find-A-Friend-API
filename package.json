@@ -1,0 +1,34 @@
+{
+  "devDependencies": {
+    "@prisma/client": "5.22.0",
+    "@types/node": "25.6.0",
+    "@types/supertest": "7.2.0",
+    "prisma": "5.22.0",
+    "supertest": "7.2.2",
+    "tsup": "8.5.1",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3",
+    "vite": "4",
+    "vite-tsconfig-paths": "6.1.1",
+    "vitest": "0.34.6"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3",
+    "dotenv": "17.4.2",
+    "fastify": "4",
+    "zod": "4.3.6"
+  },
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
+    "test:install-prisma-environment": "npm link vitest-environment-prisma",
+    "build": "tsup src --out-dir build",
+    "test": "vitest run --dir src/services",
+    "test:watch": "vitest --dir src/services",
+    "test:e2e": "vitest run --dir src/http",
+    "test:e2e:watch": "vitest --dir src/http",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  }
+}
