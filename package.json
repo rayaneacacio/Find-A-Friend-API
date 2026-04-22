@@ -13,6 +13,8 @@
     "vitest": "0.34.6"
   },
   "dependencies": {
+    "@fastify/cookie": "8",
+    "@fastify/jwt": "7",
     "bcryptjs": "3.0.3",
     "dotenv": "17.4.2",
     "fastify": "4",

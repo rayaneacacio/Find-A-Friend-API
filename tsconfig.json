@@ -46,7 +46,6 @@
   },
   "include": [
     "src",
-    "src/http/controllers/orgs/register/test.spec.ts",
-    "src/services/orgs/register/.spec.ts"
+    "src/http/controllers/orgs/**/*.spec.ts",
   ],
 }
