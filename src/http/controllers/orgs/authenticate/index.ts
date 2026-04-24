@@ -14,24 +14,18 @@ export const authenticate = async(request: FastifyRequest, reply: FastifyReply) 
   try {
     const loginOrg = makeAuthenticateOrgService();
 
-    const {org: {id}} = await loginOrg.execute(body);
+    const {org} = await loginOrg.execute(body);
 
-    const token = await reply.jwtSign(
-      {
-        sign: {
-          sub: id,
-        },
-      },
-    )
+    const token = await reply.jwtSign({sub: org.id});
 
     const refreshToken = await reply.jwtSign(
       {
-        sign: {
-          sub: id,
-          expiresIn: '7d',
-        },
+        sub: org.id,
       },
-    )
+      {
+        expiresIn: '7d',
+      }
+    );
 
     return reply.setCookie('refreshToken', refreshToken, {
       path: '/',

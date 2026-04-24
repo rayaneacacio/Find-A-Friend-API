@@ -7,7 +7,7 @@ import { hash } from 'bcryptjs';
 let orgsRepository: InMemoryOrgsRepository;
 let sut: AuthenticateService;
 
-describe('Authenticate Service', () => {
+describe('Authenticate Org Service', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository();
     sut = new AuthenticateService(orgsRepository);

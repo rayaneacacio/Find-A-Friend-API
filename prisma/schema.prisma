@@ -26,6 +26,7 @@ model Org {
 
 model Pet {
   id          String   @id @default(uuid())
+  name        String
   description String
   age         Int
   adopted     Boolean  @default(false)

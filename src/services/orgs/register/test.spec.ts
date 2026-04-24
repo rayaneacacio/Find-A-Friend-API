@@ -6,7 +6,7 @@ import { OrgAlreadyExistsError } from '../errors';
 let orgsRepository: InMemoryOrgsRepository;
 let sut: RegisterService;
 
-describe('Register Service', () => {
+describe('Register Org Service', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository()
     sut = new RegisterService(orgsRepository)
