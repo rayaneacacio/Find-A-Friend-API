@@ -4,6 +4,7 @@ import { type Pet } from '@prisma/client';
 
 interface GetPetRequest {
   city: string;
+  petAttributes?: string[]
 };
 
 interface GetPetResponse {
@@ -14,9 +15,9 @@ export class GetPetService {
   constructor(private petsRepository: PetsRepositories) {}
 
   async execute(data: GetPetRequest): Promise<GetPetResponse> {
-    const { city } = data;
+    const { city, petAttributes } = data;
 
-    const pets = await this.petsRepository.findByCity(city.toLowerCase());
+    const pets = await this.petsRepository.findByCity(city.toLowerCase(), petAttributes);
 
     if (!pets.length) throw new NoPetsAvailableError();
     

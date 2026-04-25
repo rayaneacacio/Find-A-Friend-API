@@ -25,7 +25,7 @@ describe('Get Pet Service', () => {
       created_at: new Date
     });
 
-    await petsRepository.create({
+    const pet = await petsRepository.create({
       name: 'my pet',
       description: 'live in Fortaleza',
       age: 1,
@@ -34,7 +34,9 @@ describe('Get Pet Service', () => {
       orgId: '1',
     });
 
-    const { pets } = await sut.execute({city: 'fortaleza'});
+    await petsRepository.setAttributes(['pink'], pet.id);
+
+    const { pets } = await sut.execute({city: 'fortaleza', petAttributes: ['pink']});
 
     expect(pets).toHaveLength(1);
     expect(pets).toEqual(

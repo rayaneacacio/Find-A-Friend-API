@@ -9,10 +9,14 @@ export interface Pet {
   orgId: string;
 };
 
+export type PetWithAttributes = PrismaPet & {
+  petAttributes: PetAttribute[];
+};
+
 export interface PetsRepositories {
   create(data: Pet): Promise<PrismaPet>;
   setAttributes(attributes: string[], petId: string): Promise<void>;
   getAttributes(petId: string): Promise<PetAttribute[]>;
-  findById(petId: string): Promise<PrismaPet | null>;
-  findByCity(city: string): Promise<PrismaPet[]>;
+  findById(petId: string): Promise<PetWithAttributes | null>;
+  findByCity(city: string, petAttributes?: string[]): Promise<PrismaPet[]>;
 };

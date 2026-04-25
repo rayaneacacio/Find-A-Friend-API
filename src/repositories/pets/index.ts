@@ -24,18 +24,38 @@ export class PrismaPetsRepository implements PetsRepositories {
     return await prisma.pet.findUnique({
       where: {
         id: petId
-      }
-    });
-  };
-
-  async findByCity(city: string) {
-    return await prisma.pet.findMany({
-      where: {
-        org: {
-          city: city.toLowerCase(),
-        },
+      },
+      include: {
+        petAttributes: true
       },
     });
   };
+
+ async findByCity(city: string, petAttributes?: string[]) {
+  const pets = await prisma.pet.findMany({
+    where: {
+      org: {
+        city: {
+          equals: city.toLowerCase(),
+          mode: 'insensitive'
+        },
+      },
+      ...(petAttributes && petAttributes.length > 0 && {
+        petAttributes: {
+          some: {
+            name: {
+              in: petAttributes
+            },
+          },
+        },
+      }),
+    },
+    include: {
+      petAttributes: true
+    },
+  });
+
+  return pets;
+}
 
 };

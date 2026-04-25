@@ -1,15 +1,13 @@
 import type { PetsRepositories } from '@/repositories/pets/interface';
 import { PetNotFoundError } from '@/services/errors';
-import { type Pet, type PetAttribute } from '@prisma/client';
+import { type Pet } from '@prisma/client';
 
 interface DetailsPetRequest {
   petId: string;
 };
 
 interface DetailsPetResponse {
-  pet: Pet & {
-    petAttributes: PetAttribute[]
-  };
+  pet: Pet
 };
 
 export class DetailsPetService {
@@ -22,13 +20,6 @@ export class DetailsPetService {
 
     if (!pet) throw new PetNotFoundError();
 
-    const petAttributes = await this.petsRepository.getAttributes(petId);
-    
-    return {
-      pet:{
-        ...pet,
-        petAttributes
-      }
-    };
+    return {pet};
   };
 };
