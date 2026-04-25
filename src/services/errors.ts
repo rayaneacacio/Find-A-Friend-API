@@ -15,3 +15,9 @@ export class NoPetsAvailableError extends Error {
     super('No pets available in your area.');
   };
 };
+
+export class PetNotFoundError extends Error {
+  constructor() {
+    super('Pet Not Found.');
+  };
+};

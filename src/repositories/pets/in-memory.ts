@@ -36,7 +36,15 @@ export class InMemoryPetsRepository implements PetsRepositories {
   };
 
   async getAttributes(petId: string): Promise<PetAttribute[]> {
-    return this.petAttributes;
+    return this.petAttributes.filter(petAttribute => petAttribute.petId === petId);
+  };
+
+  async findById(petId: string): Promise<PrismaPet | null> {
+    const petFound = this.pets.find(pet => pet.id === petId);
+
+    if(!petFound) return null;
+
+    return petFound;
   };
 
   async findByCity(city: string) {

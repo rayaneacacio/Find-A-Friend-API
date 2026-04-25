@@ -20,6 +20,14 @@ export class PrismaPetsRepository implements PetsRepositories {
     });
   };
 
+  async findById(petId: string) {
+    return await prisma.pet.findUnique({
+      where: {
+        id: petId
+      }
+    });
+  };
+
   async findByCity(city: string) {
     return await prisma.pet.findMany({
       where: {

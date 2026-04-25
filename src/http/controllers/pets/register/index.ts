@@ -17,13 +17,14 @@ export const register = async(request: FastifyRequest, reply: FastifyReply) => {
   try {
     const registerPet = makeRegisterPetService();
 
-    await registerPet.execute({
+    const {pet} = await registerPet.execute({
       ...body,
       orgId: request.user.sub
     });
+
+    return reply.status(201).send({pet});
+
   } catch (err) {
     throw err;
   };
-
-  return reply.status(201).send();
 };
