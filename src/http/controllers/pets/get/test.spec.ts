@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '@/app';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-describe('Register Pet (e2e)', () => {
+describe('Get Pet (e2e)', () => {
   beforeAll(async () => {
     await app.ready();
   });
@@ -11,12 +11,12 @@ describe('Register Pet (e2e)', () => {
     await app.close();
   });
 
-  it('should be able to register', async () => {
+  it('should be able to get by city', async () => {
     await request(app.server).post('/orgs').send({
       name: 'Org Test',
       email: 'org@example.test.com',
       password: '123456',
-      city: 'city org',
+      city: 'fortaleza',
       phone: '1199999999'
     });
     
@@ -25,16 +25,24 @@ describe('Register Pet (e2e)', () => {
       password: '123456',
     });
 
-    const response = await request(app.server).post('/pets')
+    await request(app.server).post('/pets')
     .set('Authorization', `Bearer ${token}`)
     .send({
       name: 'my pet',
-      description: 'about my pet',
+      description: 'live in fortaleza',
       age: '0.3',
       adopted: false,
       images: ['my-pet.png'],
     });
 
-    expect(response.statusCode).toEqual(201);
+    const response = await request(app.server).get('/pets').query({ city: 'fortaleza' });
+
+    expect(response.body.pets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          description: 'live in fortaleza'
+        })
+      ])
+    );
   });
 });

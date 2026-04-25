@@ -9,3 +9,9 @@ export class OrgAuthenticateError extends Error {
     super('Incorrect e-mail or password.');
   };
 };
+
+export class NoPetsAvailableError extends Error {
+  constructor() {
+    super('No pets available in your area.');
+  };
+};

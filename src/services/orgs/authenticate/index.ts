@@ -1,6 +1,6 @@
 import type { OrgsRepositories } from '@/repositories/orgs/interface';
 import { compare } from 'bcryptjs';
-import { OrgAuthenticateError } from '../errors';
+import { OrgAuthenticateError } from '../../errors';
 
 interface RegisterRequest {
   email: string;

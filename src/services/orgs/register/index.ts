@@ -1,13 +1,13 @@
 import type { OrgsRepositories } from '@/repositories/orgs/interface';
 import { type Org } from '@prisma/client';
 import { hash } from 'bcryptjs';
-import { OrgAlreadyExistsError } from '../errors';
+import { OrgAlreadyExistsError } from '../../errors';
 
 interface RegisterRequest {
   name: string;
   email: string;
   password: string;
-  address: string;
+  city: string;
   phone: string;
 }
 
@@ -22,7 +22,7 @@ export class RegisterService {
     name,
     email,
     password,
-    address,
+    city,
     phone
   }: RegisterRequest): Promise<RegisterResponse> {
     const passwordHash = await hash(password, 6);
@@ -35,7 +35,7 @@ export class RegisterService {
       name,
       email,
       passwordHash,
-      address,
+      city,
       phone
     });
 

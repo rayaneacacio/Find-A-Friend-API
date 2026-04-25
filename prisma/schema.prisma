@@ -18,7 +18,7 @@ model Org {
   name         String
   email        String   @unique
   passwordHash String
-  address      String
+  city         String   @default("null")
   phone        String
   created_at   DateTime @default(now())
   pets         Pet[]

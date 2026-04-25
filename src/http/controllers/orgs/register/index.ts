@@ -1,6 +1,6 @@
 import { type FastifyReply, type FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { OrgAlreadyExistsError } from '@/services/orgs/errors';
+import { OrgAlreadyExistsError } from '@/services/errors';
 import { makeRegisterOrgService } from '@/services/orgs/register/factory';
 
 export const register = async(request: FastifyRequest, reply: FastifyReply) => {
@@ -8,7 +8,7 @@ export const register = async(request: FastifyRequest, reply: FastifyReply) => {
     name: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
-    address: z.string(),
+    city: z.string(),
     phone: z.string(),
   });
 

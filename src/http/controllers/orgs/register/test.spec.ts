@@ -16,7 +16,7 @@ describe('Register (e2e)', () => {
       name: 'Org Test',
       email: 'org@example.test.com',
       password: '123456',
-      address: 'address org',
+      city: 'city org',
       phone: '1199999999'
     });
 

@@ -12,7 +12,7 @@ export class InMemoryOrgsRepository implements OrgsRepositories {
       email: data.email,
       passwordHash: data.passwordHash,
       created_at: new Date(),
-      address: data.address,
+      city: data.city || '',
       phone: data.phone
     };
 

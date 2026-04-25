@@ -13,4 +13,5 @@ export interface PetsRepositories {
   create(data: Pet): Promise<PrismaPet>;
   setAttributes(attributes: string[], petId: string): Promise<void>;
   getAttributes(petId: string): Promise<PetAttribute[]>;
+  findByCity(city: string): Promise<PrismaPet[]>;
 };

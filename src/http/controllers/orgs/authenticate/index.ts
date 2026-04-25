@@ -1,6 +1,6 @@
 import { type FastifyReply, type FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { OrgAuthenticateError } from '@/services/orgs/errors';
+import { OrgAuthenticateError } from '@/services/errors';
 import { makeAuthenticateOrgService } from '@/services/orgs/authenticate/factory';
 
 export const authenticate = async(request: FastifyRequest, reply: FastifyReply) => {

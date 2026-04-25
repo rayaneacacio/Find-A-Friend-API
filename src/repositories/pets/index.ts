@@ -19,4 +19,15 @@ export class PrismaPetsRepository implements PetsRepositories {
       }
     });
   };
+
+  async findByCity(city: string) {
+    return await prisma.pet.findMany({
+      where: {
+        org: {
+          city: city.toLowerCase(),
+        },
+      },
+    });
+  };
+
 };
