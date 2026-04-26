@@ -3,7 +3,12 @@ import type { Pet, PetsRepositories } from './interface.ts';
 
 export class PrismaPetsRepository implements PetsRepositories {
   async create(data: Pet) {
-    return await prisma.pet.create({data});
+    return await prisma.pet.create({
+      data,
+      include: {
+        petAttributes: true
+      }
+    });
   };
 
   async setAttributes(attributes: string[], petId: string) {
@@ -26,6 +31,7 @@ export class PrismaPetsRepository implements PetsRepositories {
         id: petId
       },
       include: {
+        org: true,
         petAttributes: true
       },
     });

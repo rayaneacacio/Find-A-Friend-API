@@ -6,10 +6,13 @@ import { z } from 'zod'
 export const get = async(request: FastifyRequest, reply: FastifyReply) => {
   const getQuerySchema = z.object({
     city: z.string(),
-    petAttributes: z.preprocess(value => 
-      (typeof value === 'string' ? [value] : value),
-      z.array(z.string()).optional()
-    ).default([])
+    petAttributes: z.preprocess((value) => {
+      if (!value) return [];
+
+      if (typeof value === 'string') return value.split(',').map(item => item.trim());
+    
+      return value;
+    }, z.array(z.string()).optional()).default([])
   });
 
   const {city, petAttributes = []} = getQuerySchema.parse(request.query);

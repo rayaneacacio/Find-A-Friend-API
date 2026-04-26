@@ -32,7 +32,7 @@ model Pet {
   adopted     Boolean  @default(false)
   images      String[]
 
-  org   Org    @relation(fields: [orgId], references: [id])
+  org   Org    @relation(fields: [orgId], references: [id], onDelete: Cascade)
   orgId String
 
   petAttributes PetAttribute[]
@@ -41,6 +41,6 @@ model Pet {
 model PetAttribute {
   id    String @id @default(uuid())
   name  String
-  pet   Pet    @relation(fields: [petId], references: [id])
+  pet   Pet    @relation(fields: [petId], references: [id], onDelete: Cascade)
   petId String
 }
