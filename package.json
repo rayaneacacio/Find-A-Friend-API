@@ -1,4 +1,9 @@
 {
+  "name": "find-a-friend-api",
+  "type": "module",
+  "engines": {
+    "node": "18.17.0"
+  },
   "devDependencies": {
     "@prisma/client": "5.22.0",
     "@types/node": "25.6.0",
@@ -16,6 +21,7 @@
     "@fastify/cookie": "8",
     "@fastify/jwt": "7",
     "bcryptjs": "3.0.3",
+    "csv-parse": "6.2.1",
     "dotenv": "17.4.2",
     "fastify": "4",
     "zod": "4.3.6"
@@ -31,6 +37,7 @@
     "test:e2e": "vitest run --dir src/http",
     "test:e2e:watch": "vitest --dir src/http",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "csv": "npx tsx src/import-csv.ts"
   }
 }
